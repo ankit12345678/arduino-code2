@@ -1,0 +1,1606 @@
+#include<LiquidCrystal.h>//LIBRARY FOR THE LCD
+LiquidCrystal lcd(12,9,4,3,2,1);
+#define LCD_LIGHT_PIN A4//ASSING THE POWER PIN OF LCD TO THE ANALOG PIN OF ARDUINO
+const int buttonPin1=5;
+const int buttonPin2=6;
+const int buttonPin3=7;
+const int buttonPin4=8;
+const int buttonPin5=10;
+int buttonState1=0;
+int buttonState2=0;
+int buttonState3=0;
+int buttonState4=0;
+int buttonState5=0;
+//STATE OF THE BUTTON INTIALIZES TO ZERO
+int c;
+int counter=0;
+unsigned long last=0;
+int one=15000;
+///TIME PROVIDED TO EVERY HOUR
+void setup() {
+ digitalWrite(13,LOW);
+  lcd.begin(16,4);
+  lcd.noDisplay();//INITIALLY LCD SHOULD BE OFF
+  pinMode(13,OUTPUT);
+  pinMode(buttonPin1,INPUT);
+  pinMode(buttonPin2,INPUT);
+  pinMode(buttonPin3,INPUT);
+  pinMode(buttonPin4,INPUT);
+  pinMode(buttonPin5,INPUT);
+  pinMode(LCD_LIGHT_PIN,OUTPUT);
+  pinMode(A0,INPUT);
+  lcd.clear();
+}
+void loop() {
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);//TO READ STATE OF THE BUTTON FROM DIGITAL PIN OF ARDUINO
+  buttonState3 = digitalRead(buttonPin3);
+  buttonState4 = digitalRead(buttonPin4);//TO READ STATE OF THE BUTTON FROM DIGITAL PIN OF ARDUINO
+  buttonState5 = digitalRead(buttonPin5);
+  if(buttonState1 == HIGH){//TO CHECK CONDITION OF THE BUTTON
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.println("GOOD MORNING    ");
+    lcd.setCursor(0,1);
+    lcd.println("HAVE A NICE DAY ");
+    lcd.setCursor(0,2);
+    lcd.println("                ");
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    delay(10000);
+    digitalWrite(LCD_LIGHT_PIN, LOW);
+    lcd.noDisplay();
+     last=millis();
+  while((millis())-last<one){
+    //FOR LEC 1
+  c=digitalRead(A0);//TO READ THE SIGNAL FROM ARDUINO
+  if(c==HIGH&&counter==0)//TO CHECK THE CONDITION OF THE SENSOR
+  {
+    digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);//TO MAKE LCD ON
+    lcd.display();//COMMAND FOR THE APPEARANCE OF THE LCD
+    lcd.setCursor(0,0);
+    lcd.println("lec 1,T-20      ");
+    delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+    delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("MONDAY           ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+     delay(1000);     
+  }
+   else
+{
+  digitalWrite(13,LOW);
+  lcd.begin(16,4);
+  lcd.clear();
+  lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);  
+} delay(2000);
+  }
+    counter++;
+    //FOR LEC 2
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+ if(c==HIGH&&counter==1)
+  {
+     digitalWrite(13,HIGH);
+      lcd.begin(16,4);
+      lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+      lcd.display();
+      lcd.setCursor(0,0);
+      lcd.println("lec 2,T-21      ");
+     delay(1000);
+      lcd.setCursor(0,1);
+      lcd.println("busy            ");
+     delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("MONDAY           ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+    }
+   else{digitalWrite(13,LOW);
+    lcd.begin(16,4);
+    lcd.clear();
+    lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+    delay(2000);
+    }
+    counter++;
+    //FOR LEC 3
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==2)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 3,T-22      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("MONDAY           ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+    }
+    else
+  { digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+}delay(2000);
+    }
+    counter++;
+    //FOR LEC4
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==3)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 4,T-23      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("MONDAY           ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+     }
+    else
+  {
+    digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+   delay(2000);
+    }
+    counter++;
+    //LUNCH BREAK
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==4)
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("LUNCH BREAK     ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("                ");
+     delay(1000);  
+   lcd.setCursor(0,2);
+   lcd.println("                ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+    digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+   lcd.display();}
+     delay(2000);
+    }
+    counter++;
+    //FOR LEC 5
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==5)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 5,T-23      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("MONDAY           ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,HIGH);
+    }
+   delay(2000);
+    }
+    counter++;
+    //FOR LEC 6
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==6)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+ digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 6,T-24      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("MONDAY           ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }   delay(2000);
+    }
+    counter++;
+    //FOR LEC 7
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==7)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 7,T-25      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("MONDAY          ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+     }
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }delay(2000);
+    }
+    counter++;
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==8)
+    { 
+     lcd.begin(16,4);
+     lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+     lcd.display();
+     lcd.setCursor(0,0);
+     lcd.println("GOOD BYE        ");
+      delay(1000);
+     lcd.setCursor(0,1);
+     lcd.println("                ");
+      delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("                ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }}
+    else if(buttonState2 == HIGH){//TO CHECK CONDITION OF THE BUTTON
+    lcd.begin(16,4);
+    lcd.clear();
+    lcd.setCursor(0,0);
+    digitalWrite(LCD_LIGHT_PIN,HIGH);
+    lcd.display();
+    lcd.println("GOOD MORNING     ");
+    lcd.setCursor(0,1);
+    lcd.println("HAVE A NICE DAY ");
+    lcd.setCursor(0,2);
+    lcd.println("                ");
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(10000);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+     lcd.noDisplay();
+     last=millis();
+  while((millis())-last<one){
+    //FOR LEC 1
+  c=digitalRead(A0);//TO READ THE SIGNAL FROM ARDUINO
+  if(c==HIGH&&counter==0)//TO CHECK THE CONDITION OF THE SENSOR
+  {
+    digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);//TO MAKE LCD ON
+    lcd.display();//COMMAND FOR THE APPEARANCE OF THE LCD
+    lcd.setCursor(0,0);
+    lcd.println("lec 1,T-20      ");
+    delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+    delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("TUESDAY         ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+     delay(1000);
+  }
+   else
+{
+  digitalWrite(13,LOW);
+  lcd.begin(16,4);
+  lcd.clear();
+  lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+} delay(2000);
+  }
+    counter++;
+    //FOR LEC 2
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+ if(c==HIGH&&counter==1)
+  {
+     digitalWrite(13,HIGH);
+      lcd.begin(16,4);
+      lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+      lcd.display();
+      lcd.setCursor(0,0);
+      lcd.println("lec 2,T-21      ");
+     delay(1000);
+      lcd.setCursor(0,1);
+      lcd.println("busy            ");
+     delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("TUESDAY           ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+    }
+   else{digitalWrite(13,LOW);
+    lcd.begin(16,4);
+    lcd.clear();
+    lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+    delay(2000);
+    }
+    counter++;
+    //FOR LEC 3
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==2)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 3,T-22      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("TUESDAY           ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+    }
+    else
+  { digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+}delay(2000);
+    }
+    counter++;
+    //FOR LEC4
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==3)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 4,T-23      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("TUESDAY          ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+     }
+    else
+  {
+    digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+   delay(2000);
+    }
+    counter++;
+    //LUNCH BREAK
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==4)
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("LUNCH BREAK     ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("                ");
+     delay(1000);  
+   lcd.setCursor(0,2);
+   lcd.println("                ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+    digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+   lcd.display();}
+     delay(2000);
+    }
+    counter++;
+    //FOR LEC 5
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==5)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 5,T-23      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("TUESDAY           ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }
+   delay(2000);
+    }
+    counter++;
+    //FOR LEC 6
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==6)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+ digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 6,T-24      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("TUESDAY           ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }   delay(2000);
+    }
+    counter++;
+    //FOR LEC 7
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==7)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 7,T-25      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("TUESDAY          ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+      digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();}
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }delay(2000);
+    }
+    counter++;
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==8)
+    { 
+     lcd.begin(16,4);
+     lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+     lcd.display();
+     lcd.setCursor(0,0);
+     lcd.println("GOOD BYE        ");
+      delay(1000);
+     lcd.setCursor(0,1);
+     lcd.println("                ");
+      delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("                ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }}
+   else if(buttonState3 == HIGH){//TO CHECK CONDITION OF THE BUTTON
+    lcd.begin(16,4);
+    lcd.clear();
+    lcd.setCursor(0,0);
+    digitalWrite(LCD_LIGHT_PIN,HIGH);
+    lcd.display();
+    lcd.println("GOOD MORNING     ");
+    lcd.setCursor(0,1);
+    lcd.println("HAVE A NICE DAY ");
+    lcd.setCursor(0,2);
+    lcd.println("                ");   
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(10000);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+     lcd.noDisplay();
+     last=millis();
+  while((millis())-last<one){
+    //FOR LEC 1
+  c=digitalRead(A0);//TO READ THE SIGNAL FROM ARDUINO
+  if(c==HIGH&&counter==0)//TO CHECK THE CONDITION OF THE SENSOR
+  {
+    digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);//TO MAKE LCD ON
+    lcd.display();//COMMAND FOR THE APPEARANCE OF THE LCD
+    lcd.setCursor(0,0);
+    lcd.println("lec 1,T-20      ");
+    delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+    delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("WEDNESDAY        ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+     delay(1000);
+  }
+   else
+{
+  digitalWrite(13,LOW);
+  lcd.begin(16,4);
+  lcd.clear();
+  lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+} delay(2000);
+  }
+    counter++;
+    //FOR LEC 2
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+ if(c==HIGH&&counter==1)
+  {
+     digitalWrite(13,HIGH);
+      lcd.begin(16,4);
+      lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+      lcd.display();
+      lcd.setCursor(0,0);
+      lcd.println("lec 2,T-21      ");
+     delay(1000);
+      lcd.setCursor(0,1);
+      lcd.println("busy            ");
+     delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("WEDNESDAY        ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+    }
+   else{digitalWrite(13,LOW);
+    lcd.begin(16,4);
+    lcd.clear();
+    lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+    delay(2000);
+    }
+    counter++;
+    //FOR LEC 3
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==2)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 3,T-22      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("WEDNESDAY       ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+    }
+    else
+  { digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+}delay(2000);
+    }
+    counter++;
+    //FOR LEC4
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==3)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 4,T-23      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("WEDNESDAY       ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+     }
+    else
+  {
+    digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+   delay(2000);
+    }
+    counter++;
+    //LUNCH BREAK
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==4)
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("LUNCH BREAK     ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("                ");
+     delay(1000);  
+   lcd.setCursor(0,2);
+   lcd.println("                ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+    digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+   lcd.display();}
+     delay(2000);
+     }
+    counter++;
+    //FOR LEC 5
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==5)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 5,T-23      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("WEDNESDAY       ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }
+   delay(2000);
+    }
+    counter++;
+    //FOR LEC 6
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==6)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+ digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 6,T-24      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("WEDNESDAY        ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }   delay(2000);
+    }
+    counter++;
+    //FOR LEC 7
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==7)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 7,T-25      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("WEDNESDAY       ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+      digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();}
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }delay(2000);
+    }
+    counter++;
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==8)
+    { 
+     lcd.begin(16,4);
+     lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+     lcd.display();
+     lcd.setCursor(0,0);
+     lcd.println("GOOD BYE        ");
+      delay(1000);
+     lcd.setCursor(0,1);
+     lcd.println("                ");
+      delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("                ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }}
+    else if(buttonState4 == HIGH){//TO CHECK CONDITION OF THE BUTTON
+    lcd.begin(16,4);
+    lcd.clear();
+    lcd.setCursor(0,0);
+    digitalWrite(LCD_LIGHT_PIN,HIGH);
+    lcd.display();
+    lcd.println("GOOD MORNING     ");
+    lcd.setCursor(0,1);
+    lcd.println("HAVE A NICE DAY ");
+    lcd.setCursor(0,2);
+    lcd.println("                ");
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(10000);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+     lcd.noDisplay();
+     last=millis();
+  while((millis())-last<one){
+    //FOR LEC 1
+  c=digitalRead(A0);//TO READ THE SIGNAL FROM ARDUINO
+  if(c==HIGH&&counter==0)//TO CHECK THE CONDITION OF THE SENSOR
+  {
+    digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);//TO MAKE LCD ON
+    lcd.display();//COMMAND FOR THE APPEARANCE OF THE LCD
+    lcd.setCursor(0,0);
+    lcd.println("lec 1,T-20      ");
+    delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+    delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("MONDAY           ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+     delay(1000);
+  }
+   else
+{
+  digitalWrite(13,LOW);
+  lcd.begin(16,4);
+  lcd.clear();
+  lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+} delay(2000);
+  }
+    counter++;
+    //FOR LEC 2
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+ if(c==HIGH&&counter==1)
+  {
+     digitalWrite(13,HIGH);
+      lcd.begin(16,4);
+      lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+      lcd.display();
+      lcd.setCursor(0,0);
+      lcd.println("lec 2,T-21      ");
+     delay(1000);
+      lcd.setCursor(0,1);
+      lcd.println("busy            ");
+     delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("THURSDAY           ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+    }
+   else{digitalWrite(13,LOW);
+    lcd.begin(16,4);
+    lcd.clear();
+    lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+    delay(2000);
+    }
+    counter++;
+    //FOR LEC 3
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==2)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 3,T-22      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("THURSDAY        ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+    }
+    else
+  { digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+}delay(2000);
+    }
+    counter++;
+    //FOR LEC4
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==3)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 4,T-23      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("THURSDAY        ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+     }
+    else
+  {
+    digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+   delay(2000);
+    }
+    counter++;
+    //LUNCH BREAK
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==4)
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("LUNCH BREAK     ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("                ");
+     delay(1000);  
+   lcd.setCursor(0,2);
+   lcd.println("                ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+    digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+   lcd.display();}
+     delay(2000);
+    }
+    counter++;
+    //FOR LEC 5
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==5)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 5,T-23      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("THURSDAY         ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }
+   delay(2000);
+    }
+    counter++;
+    //FOR LEC 6
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==6)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+ digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 6,T-24      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("THURSDAY        ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }   delay(2000);
+    }
+    counter++;
+    //FOR LEC 7
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==7)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 7,T-25      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("THURSDAY         ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+      digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();}
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }delay(2000);
+    }
+    counter++;
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==8)
+    { 
+     lcd.begin(16,4);
+     lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+     lcd.display();
+     lcd.setCursor(0,0);
+     lcd.println("GOOD BYE        ");
+      delay(1000);
+     lcd.setCursor(0,1);
+     lcd.println("                ");
+      delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("                ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }}
+    else if(buttonState5 == HIGH){//TO CHECK CONDITION OF THE BUTTON
+    lcd.begin(16,4);
+    lcd.clear();
+    lcd.setCursor(0,0);
+    digitalWrite(LCD_LIGHT_PIN,HIGH);
+    lcd.display();
+    lcd.println("GOOD MORNING     ");
+    lcd.setCursor(0,1);
+    lcd.println("HAVE A NICE DAY ");
+    lcd.setCursor(0,2);
+    lcd.println("                ");
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(10000);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+     lcd.noDisplay();
+     last=millis();
+  while((millis())-last<one){
+    //FOR LEC 1
+  c=digitalRead(A0);//TO READ THE SIGNAL FROM ARDUINO
+  if(c==HIGH&&counter==0)//TO CHECK THE CONDITION OF THE SENSOR
+  {
+    digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);//TO MAKE LCD ON
+    lcd.display();//COMMAND FOR THE APPEARANCE OF THE LCD
+    lcd.setCursor(0,0);
+    lcd.println("lec 1,T-20      ");
+    delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+    delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("FRIDAY          ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+     delay(1000);
+  }
+   else
+{
+  digitalWrite(13,LOW);
+  lcd.begin(16,4);
+  lcd.clear();
+  lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+} delay(2000);
+  }
+    counter++;
+    //FOR LEC 2
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+ if(c==HIGH&&counter==1)
+  {
+     digitalWrite(13,HIGH);
+      lcd.begin(16,4);
+      lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+      lcd.display();
+      lcd.setCursor(0,0);
+      lcd.println("lec 2,T-21      ");
+     delay(1000);
+      lcd.setCursor(0,1);
+      lcd.println("busy            ");
+     delay(1000);
+      lcd.setCursor(0,2);
+      lcd.println("FRIDAY          ");
+    delay(1000);
+      lcd.setCursor(0,3);
+      lcd.println("                ");
+    delay(1000);
+    }
+   else{digitalWrite(13,LOW);
+     lcd.begin(16,4);
+     lcd.clear();
+     lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+    delay(2000);
+    }
+    counter++;
+    //FOR LEC 3
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==2)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 3,T-22      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("FRIDAY           ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+    }
+    else
+  { digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+}delay(2000);
+    }
+    counter++;
+    //FOR LEC4
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==3)
+  {
+     digitalWrite(13,HIGH);
+    lcd.begin(16,4);
+    lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+    lcd.display();
+    lcd.setCursor(0,0);
+    lcd.println("lec 4,T-23      ");
+     delay(1000);
+    lcd.setCursor(0,1);
+    lcd.println("busy            ");
+     delay(1000);
+    lcd.setCursor(0,2);
+    lcd.println("FRIDAY          ");
+    delay(1000);
+    lcd.setCursor(0,3);
+    lcd.println("                ");
+    delay(1000);
+     }
+    else
+  {
+    digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+   }
+   delay(2000);
+    }
+    counter++;
+    //LUNCH BREAK
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==4)
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+     digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("LUNCH BREAK     ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("                ");
+     delay(1000);  
+   lcd.setCursor(0,2);
+   lcd.println("                ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+    digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN,LOW);
+   lcd.display();}
+     delay(2000);
+     }
+    counter++;
+    //FOR LEC 5
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==5)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 5,T-23      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("FRIDAY          ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }
+   delay(2000);
+    }
+    counter++;
+    //FOR LEC 6
+    last=millis();
+    while((millis())-last<one){
+    c=digitalRead(A0);
+    if(c==HIGH&&counter==6)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+ digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 6,T-24      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("FRIDAY          ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+    }
+    else
+  {
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }   delay(2000);
+    }
+    counter++;
+    //FOR LEC 7
+    last=millis();
+    while((millis())-last<one){
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==7)
+  {
+     digitalWrite(13,HIGH);
+   lcd.begin(16,4);
+   lcd.clear();
+    digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();
+   lcd.setCursor(0,0);
+   lcd.println("lec 7,T-25      ");
+     delay(1000);
+   lcd.setCursor(0,1);
+   lcd.println("busy            ");
+     delay(1000);
+   lcd.setCursor(0,2);
+   lcd.println("FRIDAY          ");
+    delay(1000);
+   lcd.setCursor(0,3);
+   lcd.println("                ");
+    delay(1000);
+      digitalWrite(LCD_LIGHT_PIN, HIGH);
+   lcd.display();}
+    else
+  {  digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+  }delay(2000);
+    }
+    counter++;
+     c=digitalRead(A0);
+    if(c==HIGH&&counter==8)
+    { 
+     lcd.begin(16,4);
+     lcd.clear();
+   digitalWrite(LCD_LIGHT_PIN, HIGH);
+     lcd.display();
+     lcd.setCursor(0,0);
+     lcd.println("GOOD BYE        ");
+      delay(1000);
+     lcd.setCursor(0,1);
+     lcd.println("                ");
+      delay(1000);
+     lcd.setCursor(0,2);
+     lcd.println("                ");
+    delay(1000);
+     lcd.setCursor(0,3);
+     lcd.println("                ");
+    delay(1000);
+     digitalWrite(13,LOW);
+   lcd.begin(16,4);
+   lcd.clear();
+   lcd.noDisplay();
+  digitalWrite(LCD_LIGHT_PIN,LOW);
+    }} 
+}
